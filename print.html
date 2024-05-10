@@ -1,0 +1,744 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Radix Engine</title>
+        <meta name="robots" content="noindex">
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">Architecture</li><li class="chapter-item expanded "><a href="architecture/layers.html"><strong aria-hidden="true">1.</strong> Layered Architecture</a></li><li class="chapter-item expanded "><a href="architecture/application/index.html"><strong aria-hidden="true">2.</strong> Application Layer</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="architecture/application/object/index.html"><strong aria-hidden="true">2.1.</strong> Object</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="architecture/application/object/blueprint_id.html"><strong aria-hidden="true">2.1.1.</strong> BlueprintId</a></li><li class="chapter-item expanded "><a href="architecture/application/object/inner_outer_objects.html"><strong aria-hidden="true">2.1.2.</strong> Outer Object</a></li><li class="chapter-item expanded "><a href="architecture/application/object/features.html"><strong aria-hidden="true">2.1.3.</strong> Features</a></li><li class="chapter-item expanded "><a href="architecture/application/object/generic_substitutions.html"><strong aria-hidden="true">2.1.4.</strong> Generic Substitutions</a></li><li class="chapter-item expanded "><a href="architecture/application/object/object_modules.html"><strong aria-hidden="true">2.1.5.</strong> Object Modules</a></li></ol></li><li class="chapter-item expanded "><a href="architecture/application/blueprint/index.html"><strong aria-hidden="true">2.2.</strong> Blueprint</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="architecture/application/blueprint/inner_outer.html"><strong aria-hidden="true">2.2.1.</strong> Inner and Outer Blueprints</a></li><li class="chapter-item expanded "><a href="architecture/application/blueprint/transience.html"><strong aria-hidden="true">2.2.2.</strong> Transience</a></li><li class="chapter-item expanded "><a href="architecture/application/blueprint/features.html"><strong aria-hidden="true">2.2.3.</strong> Features</a></li><li class="chapter-item expanded "><a href="architecture/application/blueprint/generics.html"><strong aria-hidden="true">2.2.4.</strong> Generics</a></li><li class="chapter-item expanded "><a href="architecture/application/blueprint/fields.html"><strong aria-hidden="true">2.2.5.</strong> Fields</a></li><li class="chapter-item expanded "><a href="architecture/application/blueprint/collections.html"><strong aria-hidden="true">2.2.6.</strong> Collections</a></li><li class="chapter-item expanded "><a href="architecture/application/blueprint/events.html"><strong aria-hidden="true">2.2.7.</strong> Events</a></li><li class="chapter-item expanded "><a href="architecture/application/blueprint/functions.html"><strong aria-hidden="true">2.2.8.</strong> Functions</a></li><li class="chapter-item expanded "><a href="architecture/application/blueprint/hooks.html"><strong aria-hidden="true">2.2.9.</strong> Hooks</a></li><li class="chapter-item expanded "><a href="architecture/application/blueprint/types.html"><strong aria-hidden="true">2.2.10.</strong> Types</a></li><li class="chapter-item expanded "><a href="architecture/application/blueprint/blueprint_modules.html"><strong aria-hidden="true">2.2.11.</strong> Blueprint Modules</a></li></ol></li><li class="chapter-item expanded "><a href="architecture/application/type_checking/index.html"><strong aria-hidden="true">2.3.</strong> Type Checking</a></li></ol></li><li class="chapter-item expanded "><a href="architecture/vm/index.html"><strong aria-hidden="true">3.</strong> VM Layer</a></li><li class="chapter-item expanded "><a href="architecture/system/index.html"><strong aria-hidden="true">4.</strong> System Layer</a></li><li class="chapter-item expanded "><a href="architecture/kernel/index.html"><strong aria-hidden="true">5.</strong> Kernel Layer</a></li><li class="chapter-item expanded "><a href="architecture/database/index.html"><strong aria-hidden="true">6.</strong> Database Layer</a></li><li class="chapter-item expanded affix "><li class="part-title">Execution</li><li class="chapter-item expanded "><a href="execution/transaction_lifecycle/index.html"><strong aria-hidden="true">7.</strong> Transaction Lifecycle</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="execution/transaction_lifecycle/bootup.html"><strong aria-hidden="true">7.1.</strong> Bootup</a></li><li class="chapter-item expanded "><a href="execution/transaction_lifecycle/runtime.html"><strong aria-hidden="true">7.2.</strong> Runtime</a></li><li class="chapter-item expanded "><a href="execution/transaction_lifecycle/shutdown.html"><strong aria-hidden="true">7.3.</strong> Shutdown</a></li></ol></li><li class="chapter-item expanded "><a href="execution/environment/index.html"><strong aria-hidden="true">8.</strong> Application Environment</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="execution/environment/object_lifecycle.html"><strong aria-hidden="true">8.1.</strong> Objects</a></li><li class="chapter-item expanded "><a href="execution/environment/invocations.html"><strong aria-hidden="true">8.2.</strong> Invocations</a></li><li class="chapter-item expanded "><a href="execution/environment/state_reads_writes.html"><strong aria-hidden="true">8.3.</strong> State Reads/Writes</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Native Systems</li><li class="chapter-item expanded "><a href="native/transaction_processor/index.html"><strong aria-hidden="true">9.</strong> Transaction Processor</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="native/transaction_processor/blueprint.html"><strong aria-hidden="true">9.1.</strong> Transaction Processor Blueprint</a></li></ol></li><li class="chapter-item expanded "><a href="native/resources/index.html"><strong aria-hidden="true">10.</strong> Resources</a></li><li class="chapter-item expanded "><a href="native/access_control/index.html"><strong aria-hidden="true">11.</strong> Access Control</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="native/access_control/blueprint_module.html"><strong aria-hidden="true">11.1.</strong> Access Control Blueprint Module</a></li><li class="chapter-item expanded "><a href="native/access_control/role_assignment.html"><strong aria-hidden="true">11.2.</strong> Role Assignment Object Module</a></li><li class="chapter-item expanded "><a href="native/access_control/authzone.html"><strong aria-hidden="true">11.3.</strong> Auth Zone Blueprint</a></li><li class="chapter-item expanded "><a href="native/access_control/system_module.html"><strong aria-hidden="true">11.4.</strong> Access Control System Module</a></li></ol></li><li class="chapter-item expanded "><a href="native/costing_limits/index.html"><strong aria-hidden="true">12.</strong> Costing/Limits</a></li><li class="chapter-item expanded "><a href="native/royalties/index.html"><strong aria-hidden="true">13.</strong> Royalties</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="native/royalties/package_royalties.html"><strong aria-hidden="true">13.1.</strong> Package Royalties Blueprint Module</a></li><li class="chapter-item expanded "><a href="native/royalties/component_royalties.html"><strong aria-hidden="true">13.2.</strong> Component Royalties Object Module</a></li></ol></li><li class="chapter-item expanded "><a href="native/metadata/index.html"><strong aria-hidden="true">14.</strong> Metadata</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="native/metadata/object_module.html"><strong aria-hidden="true">14.1.</strong> Metadata Object Module</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Protocol</li><li class="chapter-item expanded "><a href="protocol/genesis_bootstrap.html"><strong aria-hidden="true">15.</strong> Genesis Bootstrap</a></li><li class="chapter-item expanded "><a href="protocol/protocol_updates.html"><strong aria-hidden="true">16.</strong> Protocol Updates</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Radix Engine</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="what-is-radix-engine"><a class="header" href="#what-is-radix-engine">What is Radix Engine?</a></h1>
+<p>Radix Engine is a deterministic, transaction-based state machine that updates ledger state by
+incrementally executing transactions.</p>
+<p>Radix Engine was built out of the lack of Blockchain VMs specifically optimized for a DeFi
+shared computing environment in terms of usability, security, performance, and modularity.</p>
+<p>Unlike the EVM and other blockchain VMs, Radix Engine:</p>
+<ul>
+<li>Is Object-Oriented and Type-Safe</li>
+<li>Enforces move/ownership semantics</li>
+<li>Has the ability to add system plugins to extend system functionality</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="architecture"><a class="header" href="#architecture">Architecture</a></h1>
+<p>Radix Engine is organized into 5 layers. Each layer has specific responsibilities and
+provides an API to the layer above. Middle layers also provide a Callback API which the
+layer above must implement.</p>
+<div class="table-wrapper"><table><thead><tr><th>Layer Name</th><th>Layer ID</th><th>Responsibilities</th></tr></thead><tbody>
+<tr><td>Application</td><td>5</td><td>Defines Blueprint Application Logic</td></tr>
+<tr><td>VM</td><td>4</td><td>Executes Application Code</td></tr>
+<tr><td>System</td><td>3</td><td>Defines Actor abstraction (Memory Protection)<br>Defines Package, Blueprint, Object abstractions<br>Defines System Standards such as Authorization and Versioning</td></tr>
+<tr><td>Kernel</td><td>2</td><td>Defines Node, Partition, Substate abstractions<br>Maintains Call Frame Stack<br>Maintains Ownership/Reference invariants</td></tr>
+<tr><td>Database</td><td>1</td><td>Defines PartitionKey, SortKey abstractions</td></tr>
+</tbody></table>
+</div><div style="break-before: page; page-break-before: always;"></div><h1 id="application-layer"><a class="header" href="#application-layer">Application Layer</a></h1>
+<p>The application layer is responsible for defining high level logic which manipulates objects
+and produces events for the eventual use by off-ledger systems such as wallets and DApps.</p>
+<h2 id="implementation"><a class="header" href="#implementation">Implementation</a></h2>
+<p>An application is implemented by publishing a <em>Package</em>, which contain zero or more <em>Blueprints</em>.
+Each blueprint defines object type information and logic which can create, manipulate and
+destroy objects of that blueprint type.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="object-model"><a class="header" href="#object-model">Object Model</a></h1>
+<p>Unlike Ethereum where the ledger state is a flat mapping between addresses and account states, Radix
+Engine organizes its state into a forest of <em>objects</em>, each of which has a blueprint type. Child
+objects are exclusively owned by its parent in the tree hierarchy. Each root object is assigned a
+<em>global address</em>.</p>
+<p><img src="architecture/application/object/object_model.drawio.svg" alt="" /></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="blueprint-id"><a class="header" href="#blueprint-id">Blueprint Id</a></h1>
+<p>Every object is associated with a blueprint id which consists of
+<code>&lt;package_address&gt; + &lt;blueprint_name&gt;</code>. A blueprint id uniquely identifies the
+<a href="architecture/application/object/../blueprint/README.html">blueprint</a> of an object.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="outer-objects"><a class="header" href="#outer-objects">Outer Objects</a></h1>
+<p>Objects which are Inner Blueprints will have an associated Outer object of a given outer
+Blueprint. Objects of an Inner Blueprint may directly access the state of its outer object
+avoiding invocation and new call frame overhead + costs.</p>
+<p><img src="architecture/application/object/inner_outer_objects.drawio.svg" alt="" /></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="features"><a class="header" href="#features">Features</a></h1>
+<p>An object's features describes optional features an object may have. An object's features
+must be a subset of the total <a href="architecture/application/object/../blueprint/features.html">features</a> defined in a blueprint.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="generic-substitutions"><a class="header" href="#generic-substitutions">Generic Substitutions</a></h1>
+<p>If an object's blueprint defines generic arguments then these are replaced with the
+type specified in an object's generic substitutions list.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="object-modules"><a class="header" href="#object-modules">Object Modules</a></h1>
+<p>The system may define additional state/logic to be stored per globalized object known as
+an <em>Object Module</em>.</p>
+<p>An Object Module itself has a Blueprint type along with associated logic to manipulate
+the state of the object module.</p>
+<p>Currently, there exists three object modules:</p>
+<ul>
+<li><a href="architecture/application/object/../../../native/access_control/role_assignment.html">RoleAssignment</a> (Required)</li>
+<li><a href="architecture/application/object/../../../native/metadata/object_module.html">Metadata</a> (Required)</li>
+<li><a href="architecture/application/object/../../../native/royalties/component_royalties.html">Component Royalties</a> (Optional)</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="blueprint"><a class="header" href="#blueprint">Blueprint</a></h1>
+<p>A Blueprint is the Radix Engine equivalent of Classes/Types in Object-Oriented Languages.
+It acts as a type identifier for an object and describes shared properties of all objects
+of that blueprint such as function/method interfaces.</p>
+<p>Each blueprint has a unique name within its package and are globally identifiable by
+<code>&lt;package_address&gt; + &lt;blueprint_name&gt;</code>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="inner-and-outer-blueprints"><a class="header" href="#inner-and-outer-blueprints">Inner and Outer Blueprints</a></h1>
+<blockquote>
+<p><strong><em>NOTE:</em></strong> Inner Blueprints are currently only available for use by native packages.</p>
+</blockquote>
+<p>A blueprint may be specified as either an Outer or Inner Blueprint. Inner blueprints must specify
+an associated outer blueprint defined in the same package.</p>
+<p><img src="architecture/application/blueprint/inner_outer_blueprints.drawio.svg" alt="" /></p>
+<p>Inner blueprint objects may only be instantiated by an object of the associated outer blueprint.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="transience"><a class="header" href="#transience">Transience</a></h1>
+<blockquote>
+<p><strong><em>NOTE:</em></strong> Transience is currently only available for use by native packages.</p>
+</blockquote>
+<p>If a blueprint is specified to be transient, all objects of this blueprint cannot be persisted.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="features-1"><a class="header" href="#features-1">Features</a></h1>
+<blockquote>
+<p><strong><em>NOTE:</em></strong> Features are currently only available for use by native packages.</p>
+</blockquote>
+<p>Features provide a mechanism to express conditional execution and conditional stored state.
+The set of features to be used are specified per object on instantiation.</p>
+<p>Features are identified by string.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="generics"><a class="header" href="#generics">Generics</a></h1>
+<blockquote>
+<p><strong><em>NOTE:</em></strong> Generics are currently only available for use by native packages.</p>
+</blockquote>
+<p>Generics to a blueprint may be specified which will then require an object instantiator to
+specify generic parameters during instantiation. Such a generic can then be used in defining function
+or state schemas.</p>
+<p>Generics in a Blueprint are identified by index.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="fields"><a class="header" href="#fields">Fields</a></h1>
+<blockquote>
+<p><strong><em>NOTE:</em></strong> Use of more than one Field, Field Conditions and Field Transience are currently only available for use by native packages.</p>
+</blockquote>
+<p>A field is object state which gets loaded at once and maps to a single substate. A schema which
+describes what is in the data must be specified for every field.</p>
+<p>Fields are identified by field index.</p>
+<h2 id="field-condition"><a class="header" href="#field-condition">Field Condition</a></h2>
+<p>Fields may be conditionally included in an object depending on the features instantiated
+with that object. There are currently three options for field conditions:</p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>Always</td><td>Always include the field</td></tr>
+<tr><td>IfFeature</td><td>Only include the field if a given feature is specified</td></tr>
+<tr><td>IfOuterFeature</td><td>Only include the field if a given feature in the associated outer object is specified</td></tr>
+</tbody></table>
+</div>
+<h2 id="field-transience"><a class="header" href="#field-transience">Field Transience</a></h2>
+<p>Fields may be specified to be transient. In this case, the field is never persisted. Instead, a default
+value is initially loaded on first read and may be updated over the course of a transaction. At the end
+of a transaction the field's value gets discarded.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="collections"><a class="header" href="#collections">Collections</a></h1>
+<blockquote>
+<p><strong><em>NOTE:</em></strong> Collections are currently only available for use by native packages.</p>
+</blockquote>
+<p>A collections is a set of data which can be read/loaded incrementally. There are currently three types
+of collections:</p>
+<ol>
+<li>Key-Value Collection</li>
+<li>Index Collection</li>
+<li>Sorted Index Collection</li>
+</ol>
+<p>Collections are identified by collection index.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="events"><a class="header" href="#events">Events</a></h1>
+<p>Events may be emitted during runtime for off-chain processing. A schema which
+describes the data of every event type must be specified.</p>
+<p>Events are identified by string.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="functions"><a class="header" href="#functions">Functions</a></h1>
+<p>Functions define executable logic.</p>
+<p>A function signature is defined by an input/output schema as well as whether an object receiver
+must be specified.</p>
+<p>Functions are identified by string.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="hooks"><a class="header" href="#hooks">Hooks</a></h1>
+<blockquote>
+<p><strong><em>NOTE:</em></strong> Hooks are currently only available for use by native packages.</p>
+</blockquote>
+<p>Hooks define logic which get executed when certain system events occur.</p>
+<p>There are currently three types of hooks:</p>
+<div class="table-wrapper"><table><thead><tr><th>Hook Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>OnVirtualize</td><td>Called when a substate fault occurs on a virtual address of this blueprint type.</td></tr>
+<tr><td>OnMove</td><td>Called when an object of this blueprint type is moved between call frames.</td></tr>
+<tr><td>OnDrop</td><td>Called when an object of this blueprint type is dropped.</td></tr>
+</tbody></table>
+</div><div style="break-before: page; page-break-before: always;"></div><h1 id="types"><a class="header" href="#types">Types</a></h1>
+<p>A blueprint may associate a schema to a name. This name can then be used externally to specify a
+schema defined by this blueprint.</p>
+<p>Types are identified by string.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="blueprint-modules"><a class="header" href="#blueprint-modules">Blueprint Modules</a></h1>
+<p>The system may define additional state to be stored per blueprint known as Blueprint modules. If defined,
+every blueprint definition must initialize these modules.</p>
+<p>Currently there exists two blueprint modules:</p>
+<ul>
+<li><a href="architecture/application/blueprint/../../../native/access_control/blueprint_module.html">Auth</a></li>
+<li><a href="architecture/application/blueprint/../../../native/royalties/package_royalties.html">Package Royalties</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="type-checking"><a class="header" href="#type-checking">Type Checking</a></h1>
+<p>The Type Checking System checks that payloads coming from the application layer match the
+schema defined in the Blueprint. This includes:</p>
+<ul>
+<li>Object Fields/Collections</li>
+<li>Function Input/Output</li>
+<li>Events</li>
+</ul>
+<p>The Type Checking System supports generics.</p>
+<p><img src="architecture/application/type_checking/type_checking_arch.drawio.svg" alt="" /></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="vm-layer"><a class="header" href="#vm-layer">VM Layer</a></h1>
+<p>The VM Layer is responsible for providing the application layer a Turing-complete computing
+environment and the interface to the system layer interface.</p>
+<p>Radix Engine currently supports two VM environments:</p>
+<ul>
+<li>A Scrypto WASM VM which exposes the system layer interface through WASM extern functions</li>
+<li>A Native VM which directly compiles applications with Radix Engine in the host's environment.</li>
+</ul>
+<p><img src="architecture/vm/vm_layer.drawio.svg" alt="" /></p>
+<h2 id="implementation-1"><a class="header" href="#implementation-1">Implementation</a></h2>
+<p>The VM Layer is implemented by defining the System Callback Object, which requires two callback
+implementations:</p>
+<ol>
+<li><code>init</code> which is called on <a href="architecture/vm/../../execution/transaction_lifecycle/bootup.html">transaction bootup</a>
+to initialize the vm layer</li>
+<li><code>invoke</code> which is called on any function/method call</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="system-layer"><a class="header" href="#system-layer">System Layer</a></h1>
+<p>The System Layer is responsible for:</p>
+<ul>
+<li>Defining Actor abstraction and memory protection</li>
+<li>Defining the Package/Blueprint/Object abstraction</li>
+<li>Maintaining a set of System Modules, or pluggable software, which extends the
+functionality of the system.</li>
+</ul>
+<h2 id="implementation-2"><a class="header" href="#implementation-2">Implementation</a></h2>
+<p>The System Layer implements this by defining the Kernel Callback Object and using the
+kernel Node/Partition/Substate abstractions.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="kernel-layer"><a class="header" href="#kernel-layer">Kernel Layer</a></h1>
+<p>The kernel layer is responsible for:</p>
+<ul>
+<li>Defining the Node/Partition/Substate abstraction</li>
+<li>Defining the Call Frame abstraction</li>
+<li>Maintaining Ownership/Reference invariants</li>
+<li>Managing transaction state updates, which are to be subsequently committed to the
+database at the end of the transaction</li>
+</ul>
+<h2 id="implementation-3"><a class="header" href="#implementation-3">Implementation</a></h2>
+<p>The kernel layer is implemented on top of the database layer's Partition Key and Sort Key
+abstractions.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="database-layer"><a class="header" href="#database-layer">Database Layer</a></h1>
+<p>The database layer is responsible for defining the partition-key / sort-key abstractions.</p>
+<h2 id="implementation-4"><a class="header" href="#implementation-4">Implementation</a></h2>
+<p>The database layer is implemented on top of a key-value database.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="transaction-lifecycle"><a class="header" href="#transaction-lifecycle">Transaction Lifecycle</a></h1>
+<p>Radix Engine is a transactional state machine which accepts a transaction and a given state and
+outputs a state change.</p>
+<pre><code>radix_engine(State, Transaction) -&gt; (StateChange, Output)
+</code></pre>
+<p>The state change can then be applied to the database to update it's state:</p>
+<pre><code>state_commit(State, StateChange) -&gt; State
+</code></pre>
+<h2 id="three-stages"><a class="header" href="#three-stages">Three Stages</a></h2>
+<p>There are three stages in the transaction lifecycle:</p>
+<ol>
+<li><em>Bootup</em>, which consists of initializing the layers of the stack</li>
+<li><em>Execution</em>, which is the execution of the application logic specified by the transaction</li>
+<li><em>Shutdown</em>, which consists of cleaning up each layer and creating the final StateChange and Output</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="transaction-bootup"><a class="header" href="#transaction-bootup">Transaction Bootup</a></h1>
+<p>The initialization of a transaction execution consists of two steps:</p>
+<ol>
+<li>Initialize Stack</li>
+<li>Invoke Transaction Processor</li>
+</ol>
+<p><img src="execution/transaction_lifecycle/bootup.drawio.png" alt="" /></p>
+<h2 id="initialize-stack"><a class="header" href="#initialize-stack">Initialize Stack</a></h2>
+<p>Before a transaction is executed, initialization of the Kernel/System/VM stack occurs. During this
+initialization phase, configuration is loaded from the database and the state of each layer is
+initialized.</p>
+<div class="table-wrapper"><table><thead><tr><th>Layer</th><th>Initialization Description</th></tr></thead><tbody>
+<tr><td>Kernel</td><td>Load Kernel version<br>Check transaction references<br>Create Initial Call Frame</td></tr>
+<tr><td>System</td><td>Load System module configurations<br>Verify transaction has not been previously executed<br>Verify transaction is valid within epoch bounds<br>Initialize enabled System Modules</td></tr>
+<tr><td>VM</td><td>Load Scrypto VM version</td></tr>
+</tbody></table>
+</div>
+<h2 id="invoke-transaction-processor"><a class="header" href="#invoke-transaction-processor">Invoke Transaction Processor</a></h2>
+<p>Once the entire stack has been initialized along with the initial call frame, an invocation of a
+well-known blueprint, <code>TRANSACTION_PROCESSOR</code>, is made with the arguments specified in the transaction.
+From this point forward, normal transaction execution occurs.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="transaction-runtime"><a class="header" href="#transaction-runtime">Transaction Runtime</a></h1>
+<p>Once transaction bootup has finished, the <code>TRANSACTION_PROCESSOR</code> blueprint function <code>run</code> is then
+executed with transaction data as its argument. It executes on top of the initial call frame created
+during kernel initialization.</p>
+<p>Once the <code>run</code> function has finished executing transaction shutdown begins.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="transaction-shutdown"><a class="header" href="#transaction-shutdown">Transaction Shutdown</a></h1>
+<p>Once the <code>TRANSACTION_PROCESSOR</code> call returns, the transaction shutdown procedure begins.</p>
+<p>Transaction Shutdown consists of two steps:</p>
+<ol>
+<li>Finalize State Updates</li>
+<li>Create a Transaction Receipt</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="application-environment"><a class="header" href="#application-environment">Application Environment</a></h1>
+<p>Every method/function execution has a call frame associated with it.</p>
+<p>A call frame contains all owned and referenced objects usable by the running function. These objects
+are referrable by <code>NodeId</code>.</p>
+<h2 id="invocations"><a class="header" href="#invocations">Invocations</a></h2>
+<p>Owned and referenced objects may have methods invoked (creating a new call frame). Owned objects may be
+passed in as arguments and may be received in these invocations.</p>
+<h2 id="object-creationdestructionglobalization"><a class="header" href="#object-creationdestructionglobalization">Object Creation/Destruction/Globalization</a></h2>
+<p>Objects of the current blueprint may be instantiated, creating a new owned object into the call frame,
+or dropped, in which case the owned object gets removed from the call frame.</p>
+<h2 id="actor-state-readwrite"><a class="header" href="#actor-state-readwrite">Actor State Read/Write</a></h2>
+<p>A call frame also contains a reference to the <em>actor</em>, or callee object (i.e. <em>self</em> in object-oriented
+languages). This is maintained to allow read/writes of state for the given actor.</p>
+<h2 id="other-system-functions"><a class="header" href="#other-system-functions">Other System Functions</a></h2>
+<p>A set of other system functions are available to the application layer. Currently these include:</p>
+<ul>
+<li>Costing</li>
+<li>Transaction Runtime</li>
+<li>Crypto Utils</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="object-lifecycle"><a class="header" href="#object-lifecycle">Object Lifecycle</a></h1>
+<p><img src="execution/environment/object_lifecycle.drawio.svg" alt="" /></p>
+<h2 id="instantiation"><a class="header" href="#instantiation">Instantiation</a></h2>
+<p>An object may be instantiated by using one of the system calls:</p>
+<ul>
+<li><code>object_new_simple_object</code></li>
+<li><code>object_new_object</code></li>
+</ul>
+<p>On instantiation the set of features, generic arguments, and initial state must be passed in to
+construct the object. Only blueprints of the currently acting package may be instantiated. If the
+blueprint is an inner blueprint, only an acting outer blueprint component may instantiate that inner
+blueprint.</p>
+<h2 id="destruction"><a class="header" href="#destruction">Destruction</a></h2>
+<p>An object may be dropped by using the <code>object_drop</code> system call.</p>
+<h2 id="globalization"><a class="header" href="#globalization">Globalization</a></h2>
+<p>An object may be globalized using one of the system calls:</p>
+<ul>
+<li><code>object_globalize</code></li>
+<li><code>object_globalize_with_address_and_create_inner_object_and_emit_event</code></li>
+</ul>
+<p>Once globalized an object is associated with a global address and may be referenced without ownership
+of the object. Thus, it may be referenced in a transaction or in blueprint code.</p>
+<h2 id="moved-to-ownership-by-another-object"><a class="header" href="#moved-to-ownership-by-another-object">Moved to ownership by another object</a></h2>
+<p>A call frame owned object may be moved to ownership by another object if it is moved via one of the
+system calls:</p>
+<ul>
+<li><code>object_new_simple_object</code></li>
+<li><code>object_new_object</code></li>
+<li><code>key_value_entry_set</code></li>
+<li><code>field_write</code></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="invocations-1"><a class="header" href="#invocations-1">Invocations</a></h1>
+<p>An invocation is started by the application layer by calling one of the invocation system calls:</p>
+<ul>
+<li><code>object_call_method</code></li>
+<li><code>object_call_direct_access_method</code></li>
+<li><code>object_call_module_method</code></li>
+<li><code>blueprint_call_function</code></li>
+</ul>
+<p>On one of these calls, the system then follows three phases:</p>
+<ol>
+<li>Call Frame Setup</li>
+<li>Execution</li>
+<li>Call Frame Exit and Return</li>
+</ol>
+<h2 id="call-frame-setup"><a class="header" href="#call-frame-setup">Call Frame Setup</a></h2>
+<p>System module does its own checks (e.g. auth).</p>
+<p>Kernel invoke is called which setups a new call frame. The passed in objects in the arguments are verified
+to be valid.</p>
+<h2 id="execution"><a class="header" href="#execution">Execution</a></h2>
+<p>Once the new call frame is setup, execution is passed to the application layer which may then execute it's
+own logic in its application environment.</p>
+<h2 id="call-frame-exit"><a class="header" href="#call-frame-exit">Call Frame Exit</a></h2>
+<p>Once finished the system layer checks that the return value is of the correct schema given by the
+blueprint definition. The kernel verifies that owned objects and references in the return value are
+valid and the caller call frame is updated with any of these owned objects/references.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="state-readswrites"><a class="header" href="#state-readswrites">State Reads/Writes</a></h1>
+<p>State Reads and Writes from objects may be only be done by the current actor using the following system calls:</p>
+<ul>
+<li><code>actor_open_field</code></li>
+<li><code>actor_open_key_value_entry</code></li>
+<li><code>actor_index_insert</code></li>
+<li><code>actor_index_remove</code></li>
+<li><code>actor_index_scan_keys</code></li>
+<li><code>actor_index_drain</code></li>
+<li><code>actor_sorted_index_insert</code></li>
+<li><code>actor_sorted_index_remove</code></li>
+<li><code>actor_sorted_index_scan</code></li>
+</ul>
+<p>Key Value Stores are a special type of object though which may be read/written to as long as one has
+a reference to that key value store. This is accessible via the system call:</p>
+<ul>
+<li><code>key_value_store_open_entry</code></li>
+</ul>
+<h2 id="fields-1"><a class="header" href="#fields-1">Fields</a></h2>
+<h2 id="collections-1"><a class="header" href="#collections-1">Collections</a></h2>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="transaction-processor"><a class="header" href="#transaction-processor">Transaction Processor</a></h1>
+<p>The transaction processor is the initial application layer call frame made during
+the <a href="native/transaction_processor/../../execution/transaction_lifecycle/bootup.html">transaction boot process</a> and executes a transaction manifest which is encoded in
+a transaction.</p>
+<p>It consists of a blueprint with a single <code>run</code> function.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="transaction-processor-blueprint"><a class="header" href="#transaction-processor-blueprint">Transaction Processor Blueprint</a></h1>
+<p>The transaction processor blueprint has a single <code>run</code> function which accepts a transaction
+manifest.</p>
+<p>The manifest is a series of instructions which the transaction processor interprets and executes.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="resources"><a class="header" href="#resources">Resources</a></h1>
+<p>The Resource system manages asset logic across the system.</p>
+<p>It is composed of:</p>
+<ul>
+<li>Resource Package which consists of
+<ul>
+<li>Fungible/Non-Fungible Bucket Blueprint</li>
+<li>Fungible/Non-Fungible Proof Blueprint</li>
+<li>Fungible/Non-Fungible Vault Blueprint</li>
+<li>Fungible/Non-Fungible Resource Manager Blueprint</li>
+</ul>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="access-control"><a class="header" href="#access-control">Access Control</a></h1>
+<p>Unlike the majority of blockchains which rely on a caller identifier for access control,
+the Access Control system uses a more distributed "Proof" system. Before accessing a protected
+method a caller must provide specific "Proofs" of resources they have access to. These proofs
+must then match the required proofs defined by protected method or function of the callee.</p>
+<p>The Access Control System is composed of four parts:</p>
+<ol>
+<li>An <a href="native/access_control/blueprint_module.html">Access Control Blueprint Module</a>,
+which defines function rules and roles available to use for a given blueprint in a package and which roles are able
+to access which methods.</li>
+<li>A <a href="native/access_control/role_assignment.html">Role Assignment Object Module</a>,
+which assigns access rules for each role on object instantiation.</li>
+<li>An <a href="native/access_control/authzone.html">AuthZone Blueprint</a>, which allows a caller to update the proofs in their authzone.</li>
+<li>An <a href="native/access_control/system_module.html">Access Control System Module</a>, which creates a new AuthZone for every
+new call frame and verifies that AuthZone proofs match the requirements of accessing an
+object's function.</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="access-control-blueprint-module"><a class="header" href="#access-control-blueprint-module">Access Control Blueprint Module</a></h1>
+<p>The access control <a href="native/access_control/../../architecture/application/blueprint/blueprint_modules.html">blueprint module</a> defines three
+things for every blueprint:</p>
+<ul>
+<li>Function AccessRules</li>
+<li>Method accessibility</li>
+<li>Role Specification</li>
+</ul>
+<h2 id="function-accessrules"><a class="header" href="#function-accessrules">Function AccessRules</a></h2>
+<p>Each function is assigned an immutable access rule.</p>
+<h2 id="method-accessibility"><a class="header" href="#method-accessibility">Method Accessibility</a></h2>
+<p>Each method is assigned an accessibility rule, of which there are four options:</p>
+<div class="table-wrapper"><table><thead><tr><th>Accessibility Rule</th><th>Description</th></tr></thead><tbody>
+<tr><td>Public</td><td>Anyone can access the method</td></tr>
+<tr><td>Outer Object Only</td><td>Only outer objects may access the method</td></tr>
+<tr><td>Role Protected</td><td>Only callers who have satisfied any role in a given list may access the method</td></tr>
+<tr><td>Own Package Only</td><td>Only the package this method is a part of may access the method</td></tr>
+</tbody></table>
+</div>
+<h2 id="role-specification"><a class="header" href="#role-specification">Role Specification</a></h2>
+<p>The roles which must be assigned on object instantiated are defined in role specification.
+Furthermore, roles which may update the rules of other roles must be specified.</p>
+<p>For inner blueprints, it is also possible to defer role specification to the outer blueprint.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="role-assignment-object-module"><a class="header" href="#role-assignment-object-module">Role Assignment Object Module</a></h1>
+<p>The role assignment <a href="native/access_control/../../architecture/application/object/object_modules.html">object module</a>
+assigns each role to an access rule.</p>
+<p>The rules associated with a role may be updated or defaulted to the "owner role".</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="authzone"><a class="header" href="#authzone">AuthZone</a></h1>
+<p>To call a protected method, the caller must place these proofs into their <a href="native/access_control/../../../blueprints/resource/auth_zone">AuthZone</a>,
+a space dedicated for using proofs for the purpose of authorized method access.</p>
+<p>An AuthZone has the following methods:</p>
+<ul>
+<li><code>pop</code></li>
+<li><code>push</code></li>
+<li><code>create_proof_of_amount</code></li>
+<li><code>create_proof_of_non_fungibles</code></li>
+<li><code>create_proof_of_all</code></li>
+<li><code>drop_proofs</code></li>
+<li><code>drop_signature_proofs</code></li>
+<li><code>drop_regular_proofs</code></li>
+<li><code>drain</code></li>
+<li><code>assert_access_rule</code></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="access-control-system-module"><a class="header" href="#access-control-system-module">Access Control System Module</a></h1>
+<p>The Access Control System Module operates on every invocation:</p>
+<ol>
+<li>Creates a new AuthZone</li>
+<li>Resolve the Permission required to access the method/function invocation</li>
+<li>Verifies that the Global Caller AuthZone has sufficient proofs to pass the AccessRule</li>
+</ol>
+<h2 id="authzone-creation"><a class="header" href="#authzone-creation">AuthZone Creation</a></h2>
+<p>At the start of every invocation, the access control system module creates a new
+<a href="native/access_control/authzone.html">AuthZone</a> in the call frame of the caller and adds a reference to this object
+in the callee's call frame. This AuthZone effectively becomes the "Local AuthZone" of the callee.</p>
+<p>Every AuthZone references a global caller AuthZone and a parent AuthZone, the values of which
+are dependent on if the invocation is a global object context switch or not.</p>
+<p>If the invocation is a global object context switch, the global caller of the new AuthZone
+will reference the caller's AuthZone and will not have a parent AuthZone. If the invocation
+is a local context switch, the caller's global caller is copied into the new AuthZone and the
+parent will reference the caller's AuthZone.</p>
+<p>This pattern generates a stack which looks like:</p>
+<p><img src="native/access_control/auth_stack.drawio.svg" alt="" /></p>
+<h2 id="permission-resolving"><a class="header" href="#permission-resolving">Permission Resolving</a></h2>
+<p>Permission resolving involves loading up relevant state of the callee and generating a permission
+object from this state.</p>
+<p>If the callee is a function call then the permission is loaded from the function access rules
+specified in the blueprint's <a href="native/access_control/blueprint_module.html">access control blueprint module</a>.</p>
+<p>If the callee is a method call then the Method Accessibility is loaded from the callee's
+<a href="native/access_control/blueprint_module.html">access control blueprint module</a> as well as the state in the callee's
+<a href="native/access_control/role_assignment.html">Role Assignment Object Module</a>. From these two states, the permission to
+access the method is derived.</p>
+<h2 id="auth-verification"><a class="header" href="#auth-verification">Auth Verification</a></h2>
+<p>Auth verification then checks the resolved permission against the AuthZones in the current
+global context as well as the Global Caller's context.</p>
+<p><img src="native/access_control/auth_zones.drawio.svg" alt="" /></p>
+<p>In the above drawing, Call Frame 6 is making a new invocation and the AuthZones checked are
+3/4/5/6, the AuthZones belonging to the current Global Context as well as the Global Caller's
+Context.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="costing--limits"><a class="header" href="#costing--limits">Costing / Limits</a></h1>
+<p>The Costing and Limits System is responsible for bounding physical resources used in a
+transaction. It does this by maintaining a System Module which interacts with the resource
+system such that resources used in transaction require a payment of some resource.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="royalties"><a class="header" href="#royalties">Royalties</a></h1>
+<p>Royalties allow a package deployer and a component owner to receive royalties on every function
+or method call.</p>
+<p>This is implemented in two parts:</p>
+<ul>
+<li><a href="native/royalties/package_royalties.html">Package Royalties Blueprint Module</a>.</li>
+<li><a href="native/royalties/component_royalties.html">Component Royalties Object Module</a>.</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="package-royalties-blueprint-module"><a class="header" href="#package-royalties-blueprint-module">Package Royalties Blueprint Module</a></h1>
+<p>The package royalties blueprint module allows the blueprint owner to set royalties per function
+and withdraw earned royalties.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="component-royalties-object-module"><a class="header" href="#component-royalties-object-module">Component Royalties Object Module</a></h1>
+<p>The component royalties object module allows the owner to set royalties per method and withdraw
+earned royalties.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="metadata"><a class="header" href="#metadata">Metadata</a></h1>
+<p>Metadata stores string keys with metadata values for any object and package.</p>
+<p>This is implemented as a single <a href="native/metadata/object_module.html">Object Module</a>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="metadata-object-module"><a class="header" href="#metadata-object-module">Metadata Object Module</a></h1>
+<p>The metadata <a href="native/metadata/../../architecture/application/object/object_modules.html">object module</a> allows
+a user to set/update/delete metadata associated with a given object.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="genesis-bootstrap"><a class="header" href="#genesis-bootstrap">Genesis Bootstrap</a></h1>
+<p>Bootstrapping a Radix Engine requires flashing several system substates and then the execution
+of several genesis transactions.</p>
+<p>Specifically, the substates of the <code>Package</code> blueprint and object module blueprints are flashed.</p>
+<p>Once flashed, <code>Package::publish</code> calls may now be called to create the rest of the native
+blueprints.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="protocol-updates"><a class="header" href="#protocol-updates">Protocol Updates</a></h1>
+<p>Similar to genesis bootstrapping, a protocol update is a series of transactions which includes
+a set of substates to flash and a set of transactions to execute.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+    </div>
+    </body>
+</html>
